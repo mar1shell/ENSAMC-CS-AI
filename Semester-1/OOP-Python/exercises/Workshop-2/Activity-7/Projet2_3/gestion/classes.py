@@ -22,9 +22,7 @@ class Personne:
     def set_id(self, id):
         self.id = id
     def toString(self):
-        print("#" * 20)
-        print("Id : ", self.id, ", Name : ", self.name, ", City : ", self.city)
-        print("#" * 20)
+        return "Id : " + str(self.id) + ", Name : " + self.name + ", City : " + self.city
 
 class Student(Personne):
     def __init__(self, id, name, city, formation, level):
@@ -44,9 +42,7 @@ class Student(Personne):
     def set_level(self, level):
         self.level = level
     def toString(self):
-        super().toString()
-        print("Formation : ", self.formation, ", Level : ", self.level)
-        print("#" * 20)
+        return super().toString() + ", Formation : " + self.formation + ", Level : " + str(self.level)
 
 class Employe(Personne):
     def __init__(self, id, name, city, job, sal):
@@ -65,6 +61,4 @@ class Employe(Personne):
     def set_sal(self, sal):
         self.sal = sal
     def toString(self):
-        super().toString()
-        print("Job : ", self.job, ", Salary : ", self.sal)
-        print("#" * 20)
+        return super().toString() + ", Job : " + self.job + ", Salary : " + str(self.sal)

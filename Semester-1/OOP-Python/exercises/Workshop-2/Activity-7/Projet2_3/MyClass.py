@@ -5,5 +5,8 @@ s2 = Student(2, "Amine", "Nador", "iagi", 2)
 
 e1 = Employe(0,"Khalil", "Casablanca", "Lawyer", 15000)
 
-s1.toString()
-s2.toString()
+print("#" * 20)
+print(s1.toString())
+print("#" * 20)
+print(s2.toString())
+print("#" * 20)

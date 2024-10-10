@@ -19,9 +19,7 @@ class Personne:
     def set_order(self, order):
         self.order.append(order)
     def toString(self):
-        print("#" * 20)
-        print("Id : ", self.id, ", Name : ", self.name, ", City : ", self.city)
-        print("#" * 20)
+        return "Id : " + str(self.id) + ", Name : " + self.name + ", City : " + self.city
     def display_order(self):
         if self.order is not None:
             print("#" * 20)
@@ -54,8 +52,7 @@ class Order:
     def set_personne(self, personne):
         self.personne = personne
     def toString(self):
-        print("#" * 20)
-        print("Code : ", self.code, ", datecmd : ", self.datecmd, ", total : ", self.total)
+        return "Code : " + str(self.code) + ", Date : " + self.datecmd + ", Total : " + str(self.total)
     def display_personne(self):
         if self.personne is not None:
             print("Personne Id : ", self.personne.get_id())
