@@ -21,7 +21,7 @@ This workshop is developed using the PyCharm IDE. Make sure you have it installe
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/ENSAMC-CS-AI.git
+    git clone https://github.com/mar1shell/ENSAMC-CS-AI.git
     ```
 2. Open the project in PyCharm:
     - Go to `File` > `Open`
