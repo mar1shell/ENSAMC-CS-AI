@@ -35,6 +35,8 @@ Node *createNode(int val);
 
 Node *arrayToLinkedList(int *array, int length);
 
+Node *arrayToCircularLinkedList(int *array, int length);
+
 void printLinkedList(Node *head);
 
 void freeLinkedList(Node *head);
@@ -46,6 +48,8 @@ void push_back(Node *head, int val);
 void push_head(Node **headPtr, int val);
 
 void delete(Node **headPtr, int position);
+
+void deleteNode(Node **headPtr, Node *node);
 
 int pop(Node *head);
 

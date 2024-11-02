@@ -34,6 +34,29 @@ Node *arrayToLinkedList(int *array, int length) {
     return head;
 }
 
+// function to convert array to circular linked list
+
+Node* arrayToCircularLinkedList(int *array, int length) {
+    if (array == NULL || length == 0) { // Check for NULL array or zero length
+        return NULL;
+    }
+
+    // Initialize head node
+    Node *head = createNode(array[0]);
+    Node *temp = head;
+
+    // Create subsequent nodes and link them
+    for (int i = 1; i < length; i++) {
+        temp->next = createNode(array[i]);
+        temp = temp->next;
+    }
+
+    // Complete the circle by pointing the last node to head
+    temp->next = head;
+
+    return head;
+}
+
 // function to print a linked list
 
 void printLinkedList(Node *head) {
@@ -172,6 +195,50 @@ void delete(Node **headPtr, int position) {
     Node *newNextNode = temp->next->next;
     free(temp->next);
     temp->next = newNextNode;
+}
+
+// delete given node from the linked list
+
+void deleteNode(Node **headPtr, Node *node) {
+    Node *head = *headPtr;
+
+    if (head == NULL || node == NULL) { // If the list is empty or node is NULL, do nothing
+        return;
+    }
+
+    if (node == head && head->next == head) { // If there's only one node
+        free(head);
+        *headPtr = NULL;  // Update head to NULL after deletion
+        return;
+    }
+
+    if (node == head) { // If the node to delete is the head, update head pointer
+        Node *temp = head;
+        
+        // Find the last node in the circle to update its next pointer
+        while (temp->next != head) {
+            temp = temp->next;
+        }
+        
+        // Link the last node to the new head and free the old head
+        temp->next = head->next;
+        *headPtr = head->next;
+        free(head);
+        return;
+    }
+
+    // Traverse to find the node's previous node
+    Node *temp = head;
+    while (temp->next != node) {
+        if (temp->next == head) { // If we've looped back to head, node isn't in the list
+            return;
+        }
+        temp = temp->next;
+    }
+
+    // Update the link to skip over the node to be deleted
+    temp->next = node->next;
+    free(node);
 }
 
 // function to delete the last node in a linked list
