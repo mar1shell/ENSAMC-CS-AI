@@ -1,21 +1,38 @@
 # Project Overview
 
+This repository contains solutions to a series of SQL exercises organized across multiple `.sql` files. Each file is structured to tackle different aspects of SQL and database management, covering foundational to more advanced topics. *Note: All questions are provided in French.*
+
 ## f1.sql
-The `f1.sql` file contains the script to create the database if `SYSDATE` is in the format `01-JAN-2024`. This script ensures that the database is set up correctly based on the specified date format.
+The `f1.sql` file contains the script to create the database if `SYSDATE` is in the format `01-JAN-2024`. This script sets up the database environment based on the specified date format.
 
 ## tp1.sql
 The `tp1.sql` file contains the solutions to the following activities:
 
 1. **Activity 1: Simple SELECT Queries**
-    - This activity involves writing basic `SELECT` statements to retrieve data from a single table. It focuses on understanding the fundamental syntax of SQL queries.
+    - Writing basic `SELECT` statements to retrieve data from a single table, focusing on understanding SQL syntax.
 
 2. **Activity 2: Using WHERE Conditions**
-    - This activity focuses on using the `WHERE` clause to filter data in `SELECT` queries. It includes writing conditions to retrieve specific subsets of data based on various criteria.
+    - Using the `WHERE` clause to filter data based on various criteria.
 
 3. **Activity 3: Using Monoline Functions**
-    - This activity involves using SQL functions within `SELECT` statements to perform operations on data. It includes functions like `SUM`, `AVG`, `COUNT`, and string manipulation functions.
+    - Implementing functions like `SUM`, `AVG`, `COUNT`, and string manipulation within `SELECT` statements.
 
 4. **Activity 4: Using Joins**
-    - This activity covers writing `SELECT` queries that involve joining multiple tables. It includes using different types of joins to combine data from related tables.
+    - Writing `SELECT` queries to join multiple tables using different join types.
 
-Each activity is designed to help you understand and practice different aspects of SQL and database management.
+## tp2.sql
+The `tp2.sql` file continues with more advanced activities:
+
+5. **Activity 5: Group By Function**
+    - Using `GROUP BY` to aggregate data and apply functions like `COUNT`, `SUM`, and `AVG` on grouped results.
+
+6. **Activity 6: Subqueries**
+    - Practicing nested queries to retrieve specific data from related tables, understanding subquery placement and execution.
+
+7. **Activity 7: Data Manipulation**
+    - Performing `INSERT`, `UPDATE`, and `DELETE` operations to modify existing data within tables.
+
+8. **Activity 8: Creating Tables and Structures**
+    - Writing `CREATE TABLE` statements to define new database structures, including setting up primary keys, data types, and other constraints.
+
+Each section is designed to build up your SQL knowledge through hands-on practice. Happy coding!
