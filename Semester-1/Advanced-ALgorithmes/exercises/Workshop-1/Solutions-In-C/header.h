@@ -6,12 +6,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // Define macros
 
 #define TRUE 1
 
 #define FALSE 0
+
+#define MAX_SENTENCES 100
+
+#define MAX_LENGTH 200
+
+#define MAX_TEXT_LENGTH 400
 
 // functions.c
 
