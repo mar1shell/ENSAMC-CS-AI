@@ -1,0 +1,154 @@
+-----------
+Question 1:
+-----------
+1-Soit Un = 1 + 2 + ...... + n; M.Q: Un =  (n * (n + 1)) / 2;
+
+i.Pour n = 1: 1 = (1 * (1 + 1))/2 = 1 donc vraie
+
+ii.On suppose que Un = (n * (n + 1)) / 2; 
+
+iii.M.Q Un+1 = ((n + 1) * (n + 2)) / 2;
+
+on a:  Un+1 = Un + (n + 1) = (n * (n + 1)) / 2 + (n + 1) = (n + 1) * (n/2 + 1) = (n + 1) * ((n + 2) / 2)
+
+donc: Un+1 =  ((n + 1) * (n + 2)) / 2 d'ou: Un = (n * (n + 1)) / 2;
+
+--------------------------------------------------------------------------------------
+
+2-Soit Sn = 1^2 + 2^2 + ... + n^2 ; Montrons que : Sn = (n * (n + 1) * (2n + 1)) / 6.
+
+i. Pour n = 1 :
+   1^2 = (1 * (1 + 1) * (2 * 1 + 1)) / 6 = 1 donc vraie.
+
+ii. On suppose que Sn = (n * (n + 1) * (2n + 1)) / 6.
+
+iii. Montrons que Sn+1 = ((n + 1) * (n + 2) * (2n + 3)) / 6.
+
+On a : Sn+1 = Sn + (n + 1)^2
+
+En utilisant l’hypothèse de récurrence, on obtient :
+Sn+1 = (n * (n + 1) * (2n + 1)) / 6 + (n + 1)^2
+
+Factorisons (n + 1) :
+Sn+1 = (n + 1) * ((n * (2n + 1)) / 6 + (n + 1))
+
+On obtient : Sn+1 = ((n + 1) * (n + 2) * (2n + 3)) / 6
+
+Donc : Sn+1 = ((n + 1) * (n + 2) * (2n + 3)) / 6 ; d’où : Sn = (n * (n + 1) * (2n + 1)) / 6.
+
+-----------
+Question 2:
+-----------
+Complexité de chaque algorithme:
+
+1. Algorithme 1 :
+-----------------
+Pour i allant de 1 à n faire
+    Pour j allant de 1 à n faire
+        x ← x + 3
+    FinPour
+FinPour
+
+Analyse :
+- La boucle externe (pour `i`) s'exécute `n` fois.
+- La boucle interne (pour `j`) s'exécute également `n` fois pour chaque itération de `i`.
+- L'opération `x ← x + 3` est donc exécutée `n * n = n^2` fois.
+
+Complexité de l'algorithme 1 : O(n^2)
+
+
+2. Algorithme 2 :
+-----------------
+Pour i allant de 1 à n faire
+    Pour j allant de 1 à n faire
+        Pour k allant de 1 à n faire
+            x ← x + 4
+        FinPour
+    FinPour
+FinPour
+
+Analyse :
+- La boucle externe (pour `i`) s'exécute `n` fois.
+- La deuxième boucle (pour `j`) s'exécute `n` fois pour chaque itération de `i`.
+- La troisième boucle (pour `k`) s'exécute `n` fois pour chaque combinaison de `i` et `j`.
+- L'opération `x ← x + 4` est donc exécutée `n * n * n = n^3` fois.
+
+Complexité de l'algorithme 2 : O(n^3)
+
+
+3. Algorithme 3 :
+-----------------
+Pour i allant de 5 à n - 5 faire
+    Pour j allant de i - 5 à i + 5 faire
+        x ← x + 2
+    FinPour
+FinPour
+
+Analyse :
+- La boucle externe (pour `i`) s'exécute de `5` à `n - 5`, soit environ `n - 10` fois, ce qui est asymptotiquement O(n).
+- La boucle interne (pour `j`) s'exécute de `i - 5` à `i + 5`, soit toujours `11` itérations, indépendamment de la valeur de `n`.
+- L'opération `x ← x + 2` est donc exécutée `O(n) * 11`, ce qui se simplifie en `O(n)`.
+
+Complexité de l'algorithme 3 : O(n)
+
+
+4. Algorithme 4 :
+-----------------
+i ← n
+TantQue i > 1 faire
+    x ← x + a
+    i ← i / 2
+FinTantQue
+
+Analyse :
+- La variable `i` est divisée par 2 à chaque itération, ce qui signifie que le nombre d'itérations est logarithmique.
+- La boucle `TantQue` s'exécute `log₂(n)` fois avant que `i` atteigne 1.
+
+Complexité de l'algorithme 4 : O(log n)
+
+
+5. Algorithme 5 :
+-----------------
+Pour i allant de 1 à n faire
+    Pour j allant de 1 à i faire
+        x ← x + 3
+    FinPour
+FinPour
+
+Analyse :
+- La boucle externe (pour `i`) s'exécute `n` fois.
+- La boucle interne (pour `j`) s'exécute `i` fois pour chaque itération de `i`.
+- Le nombre total d'exécutions de `x ← x + 3` est donc la somme des nombres de 1 à `n`, soit `1 + 2 + ... + n = n(n + 1)/2`.
+- Cette somme est asymptotiquement équivalente à `O(n^2)`.
+
+Complexité de l'algorithme 5 : O(n^2)
+
+
+6. Algorithme 6 :
+-----------------
+Pour i allant de 1 à n faire
+    Pour j allant de 1 à i faire
+        Pour k allant de 1 à j faire
+            x ← x + 4
+        FinPour
+    FinPour
+FinPour
+
+Analyse :
+- La boucle externe (pour `i`) s'exécute `n` fois.
+- La deuxième boucle (pour `j`) s'exécute `i` fois pour chaque itération de `i`.
+- La troisième boucle (pour `k`) s'exécute `j` fois pour chaque itération de `j`.
+- Le nombre total d'exécutions de `x ← x + 4` est la somme des nombres de 1 à `n`, puis de 1 à `j` pour chaque `j`, ce qui donne une somme cubique.
+- Cette triple sommation se simplifie en `O(n^3)`.
+
+Complexité de l'algorithme 6 : O(n^3)
+
+
+Résumé des complexités :
+-------------------------
+- Algorithme 1 : O(n^2)
+- Algorithme 2 : O(n^3)
+- Algorithme 3 : O(n)
+- Algorithme 4 : O(log n)
+- Algorithme 5 : O(n^2)
+- Algorithme 6 : O(n^3)

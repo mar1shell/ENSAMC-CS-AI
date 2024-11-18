@@ -1,0 +1,50 @@
+On considère l’algorithme suivant :
+Données : un entier naturel a et un entier b
+Résultat : un entier p
+p ← 0
+m ← 0
+Tant que m < a Faire
+    p ← p + b
+    m ← m + 1
+Fin Tant que
+
+-----------
+Question 1:
+-----------
+   - Lorsque (a, b) = (3, 5) :
+     - Initialement, p = 0 et m = 0.
+     - À chaque itération, b est ajouté à p et m est incrémenté de 1.
+     - Pour a = 3, l’algorithme exécute trois itérations : 
+       - 1ère itération : p = 0 + 5 = 5, m = 1
+       - 2ème itération : p = 5 + 5 = 10, m = 2
+       - 3ème itération : p = 10 + 5 = 15, m = 3
+     - Valeur finale de p = 15.
+
+   - Lorsque (a, b) = (4, -3) :
+     - Initialement, p = 0 et m = 0.
+     - À chaque itération, b est ajouté à p et m est incrémenté de 1.
+     - Pour a = 4, l’algorithme exécute quatre itérations :
+       - 1ère itération : p = 0 + (-3) = -3, m = 1
+       - 2ème itération : p = -3 + (-3) = -6, m = 2
+       - 3ème itération : p = -6 + (-3) = -9, m = 3
+       - 4ème itération : p = -9 + (-3) = -12, m = 4
+     - Valeur finale de p = -12.
+
+   - **Interprétation de l’algorithme** : Cet algorithme effectue la multiplication de a et b en accumulant la somme de b, a fois.
+
+-----------
+Question 2:
+-----------
+   - L’algorithme se termine car à chaque itération, la variable m est incrémentée de 1, ce qui garantit que m atteindra la valeur de a.
+   - La condition d’arrêt est `m < a`. Lorsque m atteint la valeur de a, la condition devient fausse, et la boucle s’arrête.
+   - À la fin de la boucle, la valeur de m est égale à a.
+
+-----------
+Question 3:
+-----------
+   - **Invariant de boucle** : p = m * b est un invariant de boucle car à chaque itération :
+     - Au début de la boucle, p = m * b est vrai (initialement, p = 0 et m = 0).
+     - Si p = m * b est vrai au début d’une itération, alors après l'incrémentation de p de b et de m de 1, la relation reste vraie :
+       - p devient p + b = (m * b) + b = (m + 1) * b.
+       - m devient m + 1.
+   - Par récurrence, p = m * b est donc un invariant de boucle pour cet algorithme.
