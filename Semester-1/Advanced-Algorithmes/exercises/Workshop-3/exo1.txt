@@ -1,0 +1,67 @@
+Voici l'application de la partition de Lomuto pour le tableau T = [7, 4, 10, 11, 6, 5, 13, 8, 9], avec le pivot 6 (dernier élément) :
+
+Étapes du processus :
+1. Initialisation :
+   - Pivot (p) = 6
+   - Index (i) = -1
+
+À chaque itération :
+Compare chaque élément du tableau avec le pivot et permute si nécessaire.
+
+Itération 1 :
+Élément traité : 7
+Action : Pas de swap
+Tableau : [7, 4, 10, 11, 6, 5, 13, 8, 9]
+Index (i) : -1
+
+Itération 2 :
+Élément traité : 4
+Action : Swap (avec 7)
+Tableau : [4, 7, 10, 11, 6, 5, 13, 8, 9]
+Index (i) : 0
+
+Itération 3 :
+Élément traité : 10
+Action : Pas de swap
+Tableau : [4, 7, 10, 11, 6, 5, 13, 8, 9]
+Index (i) : 0
+
+Itération 4 :
+Élément traité : 11
+Action : Pas de swap
+Tableau : [4, 7, 10, 11, 6, 5, 13, 8, 9]
+Index (i) : 0
+
+Itération 5 :
+Élément traité : 6
+Action : Pas de swap
+Tableau : [4, 7, 10, 11, 6, 5, 13, 8, 9]
+Index (i) : 0
+
+Itération 6 :
+Élément traité : 5
+Action : Swap (avec 7)
+Tableau : [4, 5, 10, 11, 6, 7, 13, 8, 9]
+Index (i) : 1
+
+Itération 7 :
+Élément traité : 13
+Action : Pas de swap
+Tableau : [4, 5, 10, 11, 6, 7, 13, 8, 9]
+Index (i) : 1
+
+Itération 8 :
+Élément traité : 8
+Action : Pas de swap
+Tableau : [4, 5, 10, 11, 6, 7, 13, 8, 9]
+Index (i) : 1
+
+Itération 9 :
+Élément traité : 9
+Action : Pas de swap
+Tableau : [4, 5, 10, 11, 6, 7, 13, 8, 9]
+Index (i) : 1
+
+Placement final du pivot :
+Tableau final : [4, 5, 6, 11, 10, 7, 13, 8, 9]
+Position du pivot : Index 2
