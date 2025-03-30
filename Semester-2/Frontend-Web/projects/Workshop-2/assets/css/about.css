@@ -1,0 +1,72 @@
+h1 {
+    font-size: 2.2rem;
+    margin: 0.5rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 1rem;
+    margin: 0.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+/* Main content */
+
+.main-content-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .main-content-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* sidebar */
+
+.sidebar {
+    grid-column: span 2;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+
+.sidebar p {
+    font-size: 0.9rem;
+    margin: 0.5rem;
+    color: var(--secondary-text-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.sidebar p:hover {
+    color: var(--primary-color);
+}
+
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        grid-column: span 1;
+        text-align: center;
+    }
+}
+
+
+/* mainbar */
+
+.mainbar {
+    grid-column: span 4;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .mainbar {
+        grid-column: span 1;
+        text-align: center;
+    }
+}

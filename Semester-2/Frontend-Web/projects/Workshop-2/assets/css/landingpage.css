@@ -1,0 +1,341 @@
+/* main */
+
+main {
+    width: 100%;
+}
+
+/* HERO SECTION */
+
+.hero-container {
+    position: relative;
+    padding: 1px;
+    background-color: var(--primary-color);
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.hero-section p {
+    margin: 0.5rem;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+}
+
+.search-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+
+.search-container form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search-container form input {
+    width: 85%;
+    height: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-container form input:focus {
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.search-container form button {
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-container form button:hover {
+    border: 1px solid var(--secondary-color);
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+}
+
+@media screen and (max-width: 768px) {
+    .search-container form input {
+        width: 70%;
+        font-size: 0.8rem;
+    }
+}
+
+/*********************/
+/* Main content */
+
+.main-content-section {
+    margin-top: 50px;
+}
+
+h1 {
+    margin: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.title-description {
+    margin: 0.5rem;
+    color: var(--secondary-text-color);
+}
+
+h2 {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+/* offers section */
+
+.offers-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.offer-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: var(--text-color);
+}
+
+.offer-card img {
+    width: 100px;
+    height: 90%;
+    align-self: center;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .offers-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* popular destinations section */
+
+.popular-destinations-cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.destination-card-first-row {
+    grid-column: span 3;
+}
+
+.destination-card-second-row {
+    grid-column: span 2;
+}
+
+.destination-card {
+    height: 250px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    color: var(--secondary-color);
+}
+
+/* popular destinations images */
+
+.paris-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/paris.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.paris-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/paris.jpeg");
+    transform: scale(1.05);
+}
+
+.london-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/london.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.london-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/london.jpeg");
+    transform: scale(1.05);
+}
+
+.new-york-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/new-york.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.new-york-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/new-york.jpeg");
+    transform: scale(1.05);
+}
+
+.dubai-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/dubai.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.dubai-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 20%), url("../images/dubai.jpeg");
+    transform: scale(1.05);
+}
+
+.rome-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 10%), url("../images/rome.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.rome-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 20%), url("../images/rome.jpeg");
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .popular-destinations-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .destination-card-first-row-responsive {
+        grid-column: span 2;
+    }
+
+    .destination-card-other-rows-responsive {
+        grid-column: span 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .popular-destinations-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card-first-row-responsive, .destination-card-other-rows-responsive {
+        grid-column: span 1;
+    } 
+}
+
+/* popular attractions section */
+
+.popular-attractions-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.attraction-card {
+    height: 400px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    color: var(--secondary-color);
+}
+
+.statue-of-liberty-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/statue-of-liberty.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.statue-of-liberty-bg-img:hover {
+    background-image: 
+        linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/statue-of-liberty.jpeg");
+    transform: scale(1.05);
+}
+
+.eiffel-tower-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/eiffel-tower.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.eiffel-tower-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/eiffel-tower.jpeg");
+    transform: scale(1.05);
+}
+
+.big-ben-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/big-ben.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.big-ben-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/big-ben.jpeg");
+    transform: scale(1.05);
+}
+
+.burj-khalifa-bg-img {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.6) 0%, transparent 15%), url("../images/burj-khalifa.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.burj-khalifa-bg-img:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 59, 149, 0.8) 0%, transparent 25%), url("../images/burj-khalifa.jpeg");
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .popular-attractions-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .popular-attractions-cards {
+        grid-template-columns: 1fr;
+    }
+}
