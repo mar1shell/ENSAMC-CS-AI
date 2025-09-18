@@ -22,9 +22,6 @@ build/
 *.coverage
 *.ipynb_checkpoints/
 *.out
-*.pdf
-*.jpg
-*.png
 *.zip
 *.tar.gz
 *.rar
