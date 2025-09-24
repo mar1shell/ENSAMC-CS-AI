@@ -7,12 +7,9 @@ SELECT instance_name, status, database_status, host_name FROM v$instance;
 
 # 2 - assurez vous que l'instance est démarrée:
 
-INSTANCE_NAME	 STATUS       DATABASE_STATUS
----------------- ------------ -----------------
-HOST_NAME
-----------------------------------------------------------------
-ORCLCDB 	 OPEN	      ACTIVE
-b65cbdbedafb
+INSTANCE_NAME	 STATUS       DATABASE_STATUS	 HOST_NAME
+---------------- ------------ ----------------- ---------------
+ORCLCDB 	 OPEN	      ACTIVE		b65cbdbedafb
 
 # 3 - lancer la commande SQL*Plus en tant qu'administrateur et connectez-vous à la base de données en tant que sys:
 
@@ -21,6 +18,7 @@ sqlplus / as sysdba
 # 4 - Afficher le login de l'utilisateur connecté:
 
 show user;
+
 USER is "SYS"
 
 # 5 - Créez un fichier spool:
@@ -195,18 +193,18 @@ select * from v$sga;
 
 NAME			  VALUE     CON_ID
 -------------------- ---------- ----------
-Fixed Size		9145296 	 0
-Variable Size	      956301312 	 0
-Database Buffers     3875536896 	 0
-Redo Buffers		7630848 	 0
+Fixed Size			    9145296 	 0
+Variable Size		  956301312 	 0
+Database Buffers	 3875536896 	 0
+Redo Buffers			7630848 	 0
 
 show sga;
 
 Total System Global Area 4848614352 bytes
-Fixed Size		    9145296 bytes
-Variable Size		  956301312 bytes
-Database Buffers	 3875536896 bytes
-Redo Buffers		    7630848 bytes
+Fixed Size		    	    9145296 bytes
+Variable Size			  956301312 bytes
+Database Buffers		 3875536896 bytes
+Redo Buffers		     	7630848 bytes
 
 # 15 - Afficher la structure de vue système v$process:
 
@@ -352,7 +350,9 @@ W004  oracle		   1850565
 spool off;
 exit;
 
-# 18 - Affichez le contenu du fichier tp1.txt:
+# 18 - Affichez le contenu du fichier spool:
+
+# Voir fichier spool.txt dans le meme répertoire pour le contenu.
 
 # 19 - Analyse des commandes suivantes:
 
@@ -363,29 +363,29 @@ SELECT component, current_size from v$memory_dynamic_components order by 2 desc;
 COMPONENT							 CURRENT_SIZE
 ---------------------------------------------------------------- ------------
 SGA Target							   4848615424
-DEFAULT buffer cache						   3741319168
+DEFAULT buffer cache				   3741319168
 PGA Target							   1627389952
 shared pool							    855638016
-Shared IO Pool							    134217728
+Shared IO Pool					 	    134217728
 large pool							     67108864
 java pool							     33554432
 unified pga pool							    0
 KEEP buffer cache							    0
-RECYCLE buffer cache							    0
-DEFAULT 2K buffer cache 						    0
+RECYCLE buffer cache						    0
+DEFAULT 2K buffer cache						    0
 
 COMPONENT							 CURRENT_SIZE
 ---------------------------------------------------------------- ------------
-DEFAULT 4K buffer cache 						    0
-DEFAULT 8K buffer cache 						    0
-DEFAULT 16K buffer cache						    0
-DEFAULT 32K buffer cache						    0
+DEFAULT 4K buffer cache						    0
+DEFAULT 8K buffer cache						    0
+DEFAULT 16K buffer cache					    0
+DEFAULT 32K buffer cache					    0
 Data Transfer Cache							    0
 In-Memory Area								    0
-In Memory RW Extension Area						    0
-In Memory RO Extension Area						    0
+In Memory RW Extension Area					    0
+In Memory RO Extension Area					    0
 ASM Buffer Cache							    0
-memoptimize buffer cache						    0
+memoptimize buffer cache					    0
 streams pool								    0
 
 22 rows selected.
@@ -411,18 +411,11 @@ desc v$bgprocess;
 
 SELECT pid, spid, program, username from v$process order by program;
 
-       PID SPID
----------- ------------------------
-PROGRAM 					 USERNAME
------------------------------------------------- ---------------
-	 1
-PSEUDO
-
-	39 9189
-oracle@b65cbdbedafb (AQPC)			 oracle
-
-	57 9326
-oracle@b65cbdbedafb (CJQ0)			 oracle
+PID	  SPID PROGRAM                        USERNAME
+--- ---------- ------------------------------ ---------------
+  4	 1   oracle@b65cbdbedafb (TNS V1-V3) oracle
+  6	 7   oracle@b65cbdbedafb (TNS V1-V3) oracle
+  8	 9   oracle@b65cbdbedafb (TNS V1-V3) oracle
 ........
 ........
 
@@ -434,6 +427,6 @@ $ORACLE_BASE: c'est le répertoire de base pour tous les fichiers Oracle, y comp
 
 $ORACLE_SID: c'est l'identifiant de système Oracle qui identifie de manière unique une instance de base de données Oracle spécifique sur un système.
 
-# 21 - Aficher leurs valeurs:
+# 21 - Afficher leurs valeurs:
 
 # Voir fichier script.sh dans le meme répertoire pour le script.
