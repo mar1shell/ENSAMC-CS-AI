@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        header, nav, section, footer { margin-bottom: 20px; }
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { display: inline; margin-right: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid black; padding: 10px; text-align: left; }
+        caption { font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="pdp.jpeg" alt="Photo de profil" width="150">
+        <h1>Ahmed Ait Lhaj</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">À propos de moi</a></li>
+            <li><a href="#skills">Mes compétences</a></li>
+            <li><a href="#contact">Me contacter</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about">
+        <h2>À propos de moi</h2>
+        <p>Passionné par l'informatique et les nouvelles technologies, je suis un étudiant en ingénierie informatique avec un fort intérêt pour le développement web et la programmation. Mon objectif est d'acquérir une expertise solide dans le domaine du développement logiciel et de contribuer à des projets innovants.</p>
+        
+        <h3>Parcours</h3>
+        <p>Actuellement en formation en informatique, j’ai acquis des compétences en programmation et en développement web.</p>
+        
+        <h3>Centres d'intérêts</h3>
+        <ul>
+            <li>Programmation</li>
+            <li>Lecture</li>
+            <li>Voyages</li>
+        </ul>
+    </section>
+    
+    <section id="skills">
+        <h2>Mes compétences</h2>
+        <table>
+            <caption>Liste des compétences</caption>
+            <tr>
+                <th>Compétence</th>
+                <th>Niveau</th>
+                <th>Expérience (années)</th>
+            </tr>
+            <tr>
+                <td>HTML & CSS</td>
+                <td>Avancé</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>Intermédiaire</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>Avancé</td>
+                <td>4</td>
+            </tr>
+        </table>
+    </section>
+    
+    <section id="contact">
+        <h2>Me contacter</h2>
+        <form action="#" method="post">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <br>
+            <input type="submit" value="Envoyer">
+        </form>
+    </section>
+    
+    <footer>
+        <p>Merci de votre visite !</p>
+        <p><a href="https://www.example.com" target="_blank">Visitez mon site</a></p>
+    </footer>
+</body>
+</html>

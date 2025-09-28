@@ -1,0 +1,141 @@
+<!--EL-HAMDAOUI MAROUANE-->
+<!--IAGI CI-1-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulaire</title>
+        <meta charset="utf-8">
+        <style>
+            table {
+                border-collapse: separate;
+                border: 3px solid red;
+                border-spacing: 5px;
+                background-color: yellow;
+            }
+            th, td {
+                border: 1px solid red;
+                padding: 7px;
+                text-align: center;
+            }
+            th {
+                background-color: orange;
+                font-weight: bold;
+            }
+            .blue {
+                background-color: blue;
+            }
+            .yellow {
+                background-color: yellow;
+            }
+            .red {
+                background-color: red;
+                color: white;
+            }
+            .green {
+                background-color: green;
+            }
+            .orange {
+                background-color: orange;
+                color: black;
+            }
+            .fieldset {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="">
+            <fieldset>
+                <legend><span style="color: blue;">Informations Personnelles</span></legend>
+                <label for="nom-input">Nom(s) <span style="color:red">*</span>:</label>
+                <input required id="nom-input" type="text" placeholder="Saisir Nom">
+                <br><br>
+                <label for="prenom-input">Prénom(s) <span style="color:red">*</span>:</label>
+                <input required id="prenom-input" type="text" placeholder="Saisir Prénom">
+                <br><br>
+                <label for="email-input">Email <span style="color:red">*</span>:</label>
+                <input required id="email-input" type="email" placeholder="Saisir Email Valide">
+                <br><br>
+                <fieldset>
+                    <legend><span style="color: blue;">Naissance</span></legend>
+                    <label for="date-input">Date <span style="color:red">*</span>:</label>
+                    <input required id="date-input" type="date">
+                    <br><br>
+                    <label for="ville1-select">Ville <span style="color:red">*</span>:</label>
+                    <select id="ville1-select">
+                        <option value=""></option>
+                        <option value="Casablanca">Casablanca</option>
+                        <option value="Rabat">Rabat</option>
+                        <option value="Tanger">Tanger</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend><span style="color: red;">Coordonnées:</span></legend>
+                    <label for="tel-input">Telephone <span style="color:red">*</span>:</label>
+                    <input required id="tel-input" type="tel" placeholder="10 chiffres" maxlength="10" minlength="10">
+                    <br><br>
+                    <label for="adr-input">Adresse <span style="color:red">*</span>:</label>
+                    <textarea required id="adr-input"></textarea>
+                    <br><br>
+                    <label for="ville2-select">Ville <span style="color:red">*</span>:</label>
+                    <select id="ville2-select">
+                        <option value=""></option>
+                        <option value="Casablanca">Casablanca</option>
+                        <option value="Rabat">Rabat</option>
+                        <option value="Tanger">Tanger</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    <br><br>
+                    <label for="code-input">Code Postal :</label>
+                    <input id="code-input" type="number" maxlength="5">
+                </fieldset>
+                <bR>
+                <fieldset>
+                    <legend><span style="color: green">Centre d'interet : (cocher au moins 2 choix)</span></legend>
+                    <input id="science-input" type="checkbox">
+                    <label for="science-input">Science</label>
+                    <input id="litterature-input" type="checkbox">
+                    <label for="litterature-input">Litterature</label>
+                    <input id="theatre-input" type="checkbox">
+                    <label for="theatre-input">Théatre</label>
+                    <br><br> 
+                    <input id="cuisine-input" type="checkbox">
+                    <label for="cuisine-input">Cuisine</label>
+                    <input id="histoire-input" type="checkbox">
+                    <label for="histoire-input">Histoire</label>
+                    <input id="sport-input" type="checkbox">
+                    <label for="sport-input">Sport</label>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend><span style="color: red">Tableaux en HTML :</span></legend>
+                    <p>Le tableau suivant doit contenir un espacement de 5 pour le spacing et de 7 pour le padding et une brodure d'épaisseur de bordure de 3:</p>
+                    <table>
+                        <tr>
+                            <th colspan="3">champ1 - champ2 - champ3</th>
+                            <th>champ4</th>
+                        </tr>
+                        <tr></div>
+                            <td class="orange">Zakia</td>
+                        </tr>
+                        <tr>
+                            <td class="orange">Ben Elmoundiri</td>
+                            <td class="orange">Bahae Eddine</td>
+                            <td colspan="3" class="red">Aucune valeur saisie</td>
+                        </tr>
+                        <caption style="caption-side:bottom;">Liste des coordonnées</caption>
+                    </table>
+                </fieldset>
+            </fieldset>
+            <br>
+            <span style="color:red"> * </span> <strong><u>Champs obligatoires</u></strong>
+            <br><br>
+            <div style="margin: auto; padding: 10px; text-align: center;">
+                <button type="submit">Submit</button>
+                <button type="reset">Réintialiser</button>
+            </div>
+        </form>
+    </body>
+</html>

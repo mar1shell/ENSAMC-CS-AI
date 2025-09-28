@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "header.h": "c",
-        "limits": "c",
-        "stdlib.h": "c"
-    }
-}
