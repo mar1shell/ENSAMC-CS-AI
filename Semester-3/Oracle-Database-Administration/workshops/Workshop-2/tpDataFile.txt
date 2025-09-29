@@ -1,0 +1,653 @@
+SQL> desc dba_tablespaces
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TABLESPACE_NAME                           NOT NULL VARCHAR2(30)
+ BLOCK_SIZE                                NOT NULL NUMBER
+ INITIAL_EXTENT                                     NUMBER
+ NEXT_EXTENT                                        NUMBER
+ MIN_EXTENTS                               NOT NULL NUMBER
+ MAX_EXTENTS                                        NUMBER
+ MAX_SIZE                                           NUMBER
+ PCT_INCREASE                                       NUMBER
+ MIN_EXTLEN                                         NUMBER
+ STATUS                                             VARCHAR2(9)
+ CONTENTS                                           VARCHAR2(21)
+ LOGGING                                            VARCHAR2(9)
+ FORCE_LOGGING                                      VARCHAR2(3)
+ EXTENT_MANAGEMENT                                  VARCHAR2(10)
+ ALLOCATION_TYPE                                    VARCHAR2(9)
+ PLUGGED_IN                                         VARCHAR2(3)
+ SEGMENT_SPACE_MANAGEMENT                           VARCHAR2(6)
+ DEF_TAB_COMPRESSION                                VARCHAR2(8)
+ RETENTION                                          VARCHAR2(11)
+ BIGFILE                                            VARCHAR2(3)
+ PREDICATE_EVALUATION                               VARCHAR2(7)
+ ENCRYPTED                                          VARCHAR2(3)
+ COMPRESS_FOR                                       VARCHAR2(30)
+ DEF_INMEMORY                                       VARCHAR2(8)
+ DEF_INMEMORY_PRIORITY                              VARCHAR2(8)
+ DEF_INMEMORY_DISTRIBUTE                            VARCHAR2(15)
+ DEF_INMEMORY_COMPRESSION                           VARCHAR2(17)
+ DEF_INMEMORY_DUPLICATE                             VARCHAR2(13)
+ SHARED                                             VARCHAR2(13)
+ DEF_INDEX_COMPRESSION                              VARCHAR2(8)
+ INDEX_COMPRESS_FOR                                 VARCHAR2(13)
+ DEF_CELLMEMORY                                     VARCHAR2(14)
+ DEF_INMEMORY_SERVICE                               VARCHAR2(12)
+ DEF_INMEMORY_SERVICE_NAME                          VARCHAR2(1000)
+ LOST_WRITE_PROTECT                                 VARCHAR2(7)
+ CHUNK_TABLESPACE                                   VARCHAR2(1)
+
+SQL> desc v%tabelspace;
+SP2-0565: Illegal identifier.
+
+SQL> DESC V$TABLESPACE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TS#                                                NUMBER
+ NAME                                               VARCHAR2(30)
+ INCLUDED_IN_DATABASE_BACKUP                        VARCHAR2(3)
+ BIGFILE                                            VARCHAR2(3)
+ FLASHBACK_ON                                       VARCHAR2(3)
+ ENCRYPT_IN_BACKUP                                  VARCHAR2(3)
+ CON_ID                                             NUMBER
+
+SQL> SELECT TABLESPACE_NAME, STATUS, CONTENTS FROM DBA_TABLESPACES;
+
+TABLESPACE_NAME                STATUS    CONTENTS                               
+------------------------------ --------- ---------------------                  
+SYSTEM                         ONLINE    PERMANENT                              
+SYSAUX                         ONLINE    PERMANENT                              
+UNDOTBS1                       ONLINE    UNDO                                   
+TEMP                           ONLINE    TEMPORARY                              
+USERS                          ONLINE    PERMANENT                              
+
+
+SQL> create tablespace S1 Datafile '/opt/oracle/oradata/Workshops/data/f1.dbf' size 50m;
+create tablespace S1 Datafile '/opt/oracle/oradata/Workshops/data/f1.dbf' size 50m
+*
+ERROR at line 1:
+ORA-01119: error in creating database file 
+'/opt/oracle/oradata/Workshops/data/f1.dbf' 
+ORA-27040: file create error, unable to create file 
+Linux-x86_64 Error: 2: No such file or directory 
+Additional information: 1 
+
+
+SQL> /
+
+Tablespace created.
+
+SQL> CREATE TABLESPACE S2 DATAFILE /opt/oracle/oradata/Workshops/data/f2.dbf SIZE 10M;
+CREATE TABLESPACE S2 DATAFILE /opt/oracle/oradata/Workshops/data/f2.dbf SIZE 10M
+                              *
+ERROR at line 1:
+ORA-02236: invalid file name 
+
+
+SQL> create tablespace S2 Datafile '/opt/oracle/oradata/Workshops/data/f2.dbf' size 10m;
+
+Tablespace created.
+
+SQL> create tablespace S3 Datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' size 10m;
+
+Tablespace created.
+
+SQL> SELECT TABLESPACE_NAME, STATUS, CONTENTS FROM DBA_TABLESPACES;
+
+TABLESPACE_NAME                STATUS    CONTENTS                               
+------------------------------ --------- ---------------------                  
+SYSTEM                         ONLINE    PERMANENT                              
+SYSAUX                         ONLINE    PERMANENT                              
+UNDOTBS1                       ONLINE    UNDO                                   
+TEMP                           ONLINE    TEMPORARY                              
+USERS                          ONLINE    PERMANENT                              
+S1                             ONLINE    PERMANENT                              
+S2                             ONLINE    PERMANENT                              
+S3                             ONLINE    PERMANENT                              
+
+8 rows selected.
+
+SQL> desc dba_data_files;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FILE_NAME                                          VARCHAR2(513)
+ FILE_ID                                            NUMBER
+ TABLESPACE_NAME                                    VARCHAR2(30)
+ BYTES                                              NUMBER
+ BLOCKS                                             NUMBER
+ STATUS                                             VARCHAR2(9)
+ RELATIVE_FNO                                       NUMBER
+ AUTOEXTENSIBLE                                     VARCHAR2(3)
+ MAXBYTES                                           NUMBER
+ MAXBLOCKS                                          NUMBER
+ INCREMENT_BY                                       NUMBER
+ USER_BYTES                                         NUMBER
+ USER_BLOCKS                                        NUMBER
+ ONLINE_STATUS                                      VARCHAR2(7)
+ LOST_WRITE_PROTECT                                 VARCHAR2(7)
+
+SQL> SELECT FILE_NAME, TABLESPACE_NAME FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+------------------------------                                                  
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                                                                        
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+------------------------------                                                  
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                                                                           
+                                                                                
+/opt/oracle/oradata/Workshops/data/f1.dbf                                       
+S1                                                                              
+                                                                                
+/opt/oracle/oradata/Workshops/data/f2.dbf                                       
+S2                                                                              
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+------------------------------                                                  
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                                                                              
+                                                                                
+
+7 rows selected.
+
+SQL> COLUMN FORMAT TABELSPACE_NAME a20;
+SP2-0735: unknown COLUMN option beginning "TABELSPACE..."
+SQL> column tablespace_name format a20;
+SQL> column file_name forÃmat a40;
+SP2-0158: unknown COLUMN option "forÃmat"
+SQL> /
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                                                                        
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                                                                           
+                                                                                
+/opt/oracle/oradata/Workshops/data/f1.dbf                                       
+S1                                                                              
+                                                                                
+/opt/oracle/oradata/Workshops/data/f2.dbf                                       
+S2                                                                              
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                                                                              
+                                                                                
+
+7 rows selected.
+
+SQL> Ã/
+SP2-0042: unknown command "Ã/" - rest of line ignored.
+SQL> ALTER TABLESPACE S3 READ ONLY;
+
+Tablespace altered.
+
+SQL> SELECT TABLESPACE_NAME, STATUS FROM DBA_TABLESPACES;
+
+TABLESPACE_NAME      STATUS                                                     
+-------------------- ---------                                                  
+SYSTEM               ONLINE                                                     
+SYSAUX               ONLINE                                                     
+UNDOTBS1             ONLINE                                                     
+TEMP                 ONLINE                                                     
+USERS                ONLINE                                                     
+S1                   ONLINE                                                     
+S2                   ONLINE                                                     
+S3                   READ ONLY                                                  
+
+8 rows selected.
+
+SQL> ALTER DATABASE DATAFILE '/opt/oracle/oradata/Workshops/data/f2.dbf' RESIZE 15M;
+
+Database altered.
+
+SQL> SELECT FILE_NAME, BYTES/1024/1024 AS SIZE_MB FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+   SIZE_MB                                                                      
+----------                                                                      
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+       910                                                                      
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+       670                                                                      
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+       330                                                                      
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+   SIZE_MB                                                                      
+----------                                                                      
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+         5                                                                      
+                                                                                
+/opt/oracle/oradata/Workshops/data/f1.dbf                                       
+        50                                                                      
+                                                                                
+/opt/oracle/oradata/Workshops/data/f2.dbf                                       
+        15                                                                      
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+   SIZE_MB                                                                      
+----------                                                                      
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+        10                                                                      
+                                                                                
+
+7 rows selected.
+
+SQL> 
+SQL> ALTER TABLESPACE S2 ADD DATAFILE '/opt/oracle/oradata/Workshops/data/f4.dbf' SIZE 15M;
+
+Tablespace altered.
+
+SQL> SELECT FILE_NAME, TABLESPACE_NAME, BYTES/1024/1024 AS SIZE_MB FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME         SIZE_MB                                                 
+-------------------- ----------                                                 
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                      910                                                 
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                      670                                                 
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                    330                                                 
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME         SIZE_MB                                                 
+-------------------- ----------                                                 
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                         5                                                 
+                                                                                
+/opt/oracle/oradata/Workshops/data/f1.dbf                                       
+S1                           50                                                 
+                                                                                
+/opt/oracle/oradata/Workshops/data/f2.dbf                                       
+S2                           15                                                 
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME         SIZE_MB                                                 
+-------------------- ----------                                                 
+/opt/oracle/oradata/Workshops/data/f4.dbf                                       
+S2                           15                                                 
+                                                                                
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                           10                                                 
+                                                                                
+
+8 rows selected.
+
+SQL> CREATE TABLE formation (titre VARCHAR2(20)) TABLESPACE S3;
+CREATE TABLE formation (titre VARCHAR2(20)) TABLESPACE S3
+*
+ERROR at line 1:
+ORA-01647: tablespace 'S3' is read-only, cannot allocate space in it 
+
+
+SQL> ALTER TABLESPACE S3 READ WRITE;
+
+Tablespace altered.
+
+SQL> CREATE TABLE formation (titre VARCHAR2(20)) TABLESPACE S3;
+
+Table created.
+
+SQL> INSERT INTO formation (titre) VALUES ('php');
+
+1 row created.
+
+SQL> INSERT INTO formation (titre) VALUES ('html');
+
+1 row created.
+
+SQL> ALTER TABLESPACE S3 OFFLINE;
+
+Tablespace altered.
+
+SQL> SELECT * FROM formation;
+SELECT * FROM formation
+              *
+ERROR at line 1:
+ORA-00376: file 15 cannot be read at this time 
+ORA-01110: data file 15: '/opt/oracle/oradata/Workshops/data/f3.dbf' 
+
+
+SQL> DROP TABLESPACE S1;
+
+Tablespace dropped.
+
+SQL> SELECT TABLESPACE_NAME, STATUS FROM DBA_TABLESPACES;
+
+TABLESPACE_NAME      STATUS                                                     
+-------------------- ---------                                                  
+SYSTEM               ONLINE                                                     
+SYSAUX               ONLINE                                                     
+UNDOTBS1             ONLINE                                                     
+TEMP                 ONLINE                                                     
+USERS                ONLINE                                                     
+S2                   ONLINE                                                     
+S3                   OFFLINE                                                    
+
+7 rows selected.
+
+SQL> SELECT FILE_NAME, TABLESPACE_NAME FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                                                                        
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                                                                           
+                                                                                
+/opt/oracle/oradata/Workshops/data/f2.dbf                                       
+S2                                                                              
+                                                                                
+/opt/oracle/oradata/Workshops/data/f4.dbf                                       
+S2                                                                              
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                                                                              
+                                                                                
+
+7 rows selected.
+
+SQL> DROP TABLESPACE S2 INCLUDING CONTENTS AND DATAFILES;
+
+Tablespace dropped.
+
+SQL> SELECT TABLESPACE_NAME, STATUS FROM DBA_TABLESPACES;
+
+TABLESPACE_NAME      STATUS                                                     
+-------------------- ---------                                                  
+SYSTEM               ONLINE                                                     
+SYSAUX               ONLINE                                                     
+UNDOTBS1             ONLINE                                                     
+TEMP                 ONLINE                                                     
+USERS                ONLINE                                                     
+S3                   OFFLINE                                                    
+
+6 rows selected.
+
+SQL> SELECT FILE_NAME, TABLESPACE_NAME FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                                                                        
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                                                                           
+                                                                                
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                                                                              
+                                                                                
+
+SQL> 
+SQL> ALTER TABLESPACE S3 OFFLINE;
+ALTER TABLESPACE S3 OFFLINE
+*
+ERROR at line 1:
+ORA-01539: tablespace 'S3' is not online 
+
+
+SQL> ALTER DATABASE DATAFILE '/opt/oracle/oradata/Workshops/data/f3.dbf' RENAME TO '/opt/oracle/oradata/Workshops/data2/f3.dbf';
+ALTER DATABASE DATAFILE '/opt/oracle/oradata/Workshops/data/f3.dbf' RENAME TO '/opt/oracle/oradata/Workshops/data2/f3.dbf'
+                                                                    *
+ERROR at line 1:
+ORA-01916: keyword ONLINE, OFFLINE, RESIZE, AUTOEXTEND, END, DROP, ENABLE, 
+REMOVE, SUSPEND, ENCRYPT, or DECRYPT expected 
+
+
+SQL> alter database datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' rename to '/opt/oracle/oradata/Workshops/data2'
+  2  
+SQL> alter database datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' rename to '/opt/oracle/oradata/Workshops/data2/f3.dbf' ;
+alter database datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' rename to '/opt/oracle/oradata/Workshops/data2/f3.dbf' 
+                                                                    *
+ERROR at line 1:
+ORA-01916: keyword ONLINE, OFFLINE, RESIZE, AUTOEXTEND, END, DROP, ENABLE, 
+REMOVE, SUSPEND, ENCRYPT, or DECRYPT expected 
+
+
+SQL> SELECT TABLESPACE_NAME
+  2  FROM DBA_DATA_FILES
+  3  WHERE FILE_NAME = '/opt/oracle/oradata/Workshops/data/f3.dbf';
+
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+S3                                                                              
+
+SQL>  	# Example on Linux/Unix
+SP2-0734: unknown command beginning "# Example ..." - rest of line ignored.
+SQL> $ mv /opt/oracle/oradata/Workshops/data/f3.dbf /opt/oracle/oradata/Workshops/data2/f3.dbf# Example on Linux/Unix
+SP2-0734: unknown command beginning "$ mv /opt/..." - rest of line ignored.
+SQL> $ mv /opt/oracle/oradata/Workshops/data/f3.dbf /opt/oracle/oradata/
+SP2-0734: unknown command beginning "$ mv /opt/..." - rest of line ignored.
+SQL> SELECT FILE_NAME, TABLESPACE_NAME FROM DBA_DATA_FILES;
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/system01.dbf                                        
+SYSTEM                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/sysaux01.dbf                                        
+SYSAUX                                                                          
+                                                                                
+/opt/oracle/oradata/ORCLCDB/undotbs01.dbf                                       
+UNDOTBS1                                                                        
+                                                                                
+
+FILE_NAME                                                                       
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                                                                 
+--------------------                                                            
+/opt/oracle/oradata/ORCLCDB/users01.dbf                                         
+USERS                                                                           
+                                                                                
+/opt/oracle/oradata/Workshops/data/f3.dbf                                       
+S3                                                                              
+                                                                                
+
+SQL> ALTER DATABASE DATAFILE '/opt/oracle/oradata/Workshops/data/f3.dbf' RENAME TO '/opt/oracle/oradata/Workshops/data2/f3.dbf';
+ALTER DATABASE DATAFILE '/opt/oracle/oradata/Workshops/data/f3.dbf' RENAME TO '/opt/oracle/oradata/Workshops/data2/f3.dbf'
+                                                                    *
+ERROR at line 1:
+ORA-01916: keyword ONLINE, OFFLINE, RESIZE, AUTOEXTEND, END, DROP, ENABLE, 
+REMOVE, SUSPEND, ENCRYPT, or DECRYPT expected 
+
+
+SQL> ALTER DATABASE DATAFILE RENAME '/opt/oracle/oradata/Workshops/data/f3.dbf' TO '/opt/oracle/oradata/Workshops/data2/f3.dbf';
+ALTER DATABASE DATAFILE RENAME '/opt/oracle/oradata/Workshops/data/f3.dbf' TO '/opt/oracle/oradata/Workshops/data2/f3.dbf'
+                        *
+ERROR at line 1:
+ORA-02236: invalid file name 
+
+
+SQL> alter database rename datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' to '/opt/oracle/oradata/Workshops/data2/f3.dbf';
+alter database rename datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' to '/opt/oracle/oradata/Workshops/data2/f3.dbf'
+                      *
+ERROR at line 1:
+ORA-02231: missing or invalid option to ALTER DATABASE 
+
+
+SQL> alter tablespace S3 rename datafile '/opt/oracle/oradata/Workshops/data/f3.dbf' to '/opt/oracle/oradata/Workshops/data2/f3.dbf';
+
+Tablespace altered.
+
+SQL> SELECT TABLESPACE_NAME, STATUS, CONTENTS FROM DBA_TABLESPACES WHERE CONTENTS = 'UNDO';
+
+TABLESPACE_NAME      STATUS    CONTENTS                                         
+-------------------- --------- ---------------------                            
+UNDOTBS1             ONLINE    UNDO                                             
+
+SQL> ALTER TABLESPACE UNDOTBS1 OFFLINE;
+ALTER TABLESPACE UNDOTBS1 OFFLINE
+*
+ERROR at line 1:
+ORA-30042: Cannot offline the undo tablespace  
+
+
+SQL> ALTER SYSTEM SET UNDO_TABLESPACE = undo1 SCOPE=BOTH;
+ALTER SYSTEM SET UNDO_TABLESPACE = undo1 SCOPE=BOTH
+*
+ERROR at line 1:
+ORA-02097: parameter cannot be modified because specified value is invalid 
+ORA-30012: undo tablespace 'UNDO1' does not exist or of wrong type 
+
+
+SQL> CREATE TABLESPACE undo1 DATAFILE '/opt/oracle/oradata/Workshops/data/new_undo_ts.dbf' SIZE 20M;
+
+Tablespace created.
+
+SQL> ALTER SYSTEM SET UNDO_TABLESPACE = undo1 SCOPE=BOTH;
+ALTER SYSTEM SET UNDO_TABLESPACE = undo1 SCOPE=BOTH
+*
+ERROR at line 1:
+ORA-02097: parameter cannot be modified because specified value is invalid 
+ORA-30012: undo tablespace 'UNDO1' does not exist or of wrong type 
+
+
+SQL> SELECT TABLESPACE_NAME, CONTENTS, STATUS
+  2  FROM DBA_TABLESPACES
+  3  WHERE TABLESPACE_NAME = 'UNDO1';
+
+TABLESPACE_NAME      CONTENTS              STATUS                               
+-------------------- --------------------- ---------                            
+UNDO1                PERMANENT             ONLINE                               
+
+SQL> CREATE TABLESPACE  UNDO undo2 DATAFILE;
+CREATE TABLESPACE  UNDO undo2 DATAFILE
+                        *
+ERROR at line 1:
+ORA-02180: invalid option for CREATE TABLESPACE 
+
+
+SQL> CREATE UNDO TABLESPACE undo2 DATAFILE;
+CREATE UNDO TABLESPACE undo2 DATAFILE
+                                    *
+ERROR at line 1:
+ORA-02236: invalid file name 
+
+
+SQL> CREATE UNDO TABLESPACE undo2 DATAFILE;
+CREATE UNDO TABLESPACE undo2 DATAFILE
+                                    *
+ERROR at line 1:
+ORA-02236: invalid file name 
+
+
+SQL> CREATE UNDO TABLESPACE undo2;
+CREATE UNDO TABLESPACE undo2
+                           *
+ERROR at line 1:
+ORA-02199: missing DATAFILE/TEMPFILE clause 
+
+
+SQL> CREATE UNDO TABLESPACE undo2 DATAFILE '/opt/oracle/oradata/Workshops/undo2.dbf' size 20m;
+
+Tablespace created.
+
+SQL> ALTER SYSTEM SET UNDO_TABLESPACE = undo2 SCOPE=BOTH;
+
+System altered.
+
+SQL> ALTER TABLESPACE undo2 ONLINE;
+
+Tablespace altered.
+
+SQL> DROP TABLESPACE UNDOTBS1 INCLUDING CONTENTS AND DATAFILES;
+
+Tablespace dropped.
+
+SQL> CREATE UNDO TABLESPACE DATA02 DATAFILE '/opt/oracle/oradata/Workshops/data2/undo02.dbf' SIZE 20M;
+
+Tablespace created.
+
+SQL> 22.Basculer le tablespace DATA02 comme tablespace dâ€™annulation de votre base de donnÃ©es ?
+SP2-0734: unknown command beginning "22.Bascule..." - rest of line ignored.
+SQL> ALTER SYSTEM SET UNDO_TABLESPACE = DATA02;
+
+System altered.
+
+SQL> spool off
