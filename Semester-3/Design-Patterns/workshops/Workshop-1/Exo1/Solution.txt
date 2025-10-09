@@ -1,0 +1,19 @@
+# 1 - On constate donc que Calendrier est
+# fortement couplée à Personne. Est-ce bien
+# nécessaire ? Quelle première solution simple vue
+# en cours permettrait de diminuer le couplage ?
+
+- Pour diminuer le couplage, on va utiliser l'inversion des dépendances:
+    On crée une interface IPersonne que la classe Personne va implémenter. Ainsi, Calendrier
+    dépendra de l'interface et non plus de la classe concrète Personne.
+
+# 2.1 - On décide de construire une interface IPersonne avec juste les méthodes de Personne
+# Décrire l'interface IPersonne ainsi que la nouvelle signature de add() dans Calendrier.
+
+- Voir les fichier IPersonne.java et Calendrier.java
+
+# 2.2 - Lors de la Revue de Sprint, vous apprenez du client que Calendrier ne va finalement
+# jamais envoyer de SMS et d’emails à une Personne, mais un message pour leur anniversaire.
+# Calendrier a donc besoin de connaître le nom de la personne et son âge, càd. qu'elle peut
+# affecter une date de naissance, la consulter et envoyer un message.
+

@@ -1,0 +1,53 @@
+# 1 - Donner les responsabilités de classe UserService, et mentionner le
+# principe SOLID qu'elle ne respecte pas.
+
+
+- Responsabilités de la classe UserService :
+  - Mettre à jour les informations d'un utilisateur à partir d'une API.
+  - Gérer la suppression de la session d'un utilisateur.
+  - Vérifier si un utilisateur a les droits d'accès à l'administration.
+  - Sérialiser un objet utilisateur en une chaîne de caractères.
+
+- Principe SOLID non respecté :
+    - La classe UserService viole le principe de responsabilité unique (Single Responsibility Principle)
+    ainsi que le principe de open/closed (Open/Closed Principle).
+
+# 2 - Donner le code corrigé avec respect du principe SOLID.
+
+class UserService {
+  public function updateFromAPI( User $user): User
+  {
+  // ...
+  }
+}
+
+class SessionService {
+  public function removeSession( User $user ): void
+  {
+  // ...
+  }
+}
+
+class AuthorizationService {
+  public function isUserAllowedToAccessAdmin( User $user ): bool
+  {
+  // ...
+  }
+}
+
+class SerializationService {
+  public function serialize( User $user ): string
+  {
+  // ...
+  }
+}
+
+- Chaque classe a maintenant une responsabilité unique, respectant ainsi le principe de responsabilité unique et le principe de open/closed.
+
+# 3 – Rappeler les avantages obtenus avec cette modification.
+
+- Meilleure maintenabilité : Chaque classe a une responsabilité claire, ce qui facilite la compréhension et la modification du code.
+- Réutilisabilité : Les services peuvent être réutilisés indépendamment dans d'autres parties de l'application.
+- Testabilité : Il est plus facile d'écrire des tests unitaires pour chaque service, car ils sont découplés.
+- Extensibilité : Il est plus simple d'ajouter de nouvelles fonctionnalités sans modifier les classes existantes, respectant ainsi le principe de open/closed.
+- Collaboration : Dans un environnement de développement en équipe, plusieurs développeurs peuvent travailler sur différentes classes sans conflits.

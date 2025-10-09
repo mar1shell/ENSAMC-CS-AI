@@ -1,0 +1,19 @@
+# 1 - Sous IDE, coder la solution proposée par le collègue Julien, où on modifie la classe
+# ValidationAge en envoyant la région en paramètre aux fonctions, pour tester si ça concerne
+# la métropole ou les DomTom (limites d&#39;âge : 14, 15 et 19 pour les conditions ci-dessus).
+# Testez si ça fonctionne.
+
+- voir ValidationAge.java
+
+# 2 - Pensez-vous que la classe obtenue respecte les principes SOLID ? Proposez une solution
+# plus élégante.
+
+- La classe obtenue ne respecte pas le principe de responsabilité unique (Single Responsibility Principle)
+car elle gère à la fois les validations d'âge et les règles spécifiques aux régions. De plus, elle viole le principe de open/closed (Open/Closed Principle) car chaque fois
+qu'une nouvelle région est ajoutée, la classe doit être modifiée.
+
+- Une solution plus élégante serait de créer une interface IRegleRegion avec des méthodes pour chaque validation d'âge.
+Ensuite, on peut créer des classes concrètes pour chaque région (par exemple, RegleMetropole, RegleDomTom) qui implémentent cette interface.
+La classe ValidationAge peut alors dépendre de l'interface IRegleRegion, permettant ainsi d'ajouter de nouvelles régions sans modifier la classe ValidationAge.
+
+- voir ValidationAge2.java, IRegleRegion.java, RegleMetropole.java, RegleDomTom.java et Test.java

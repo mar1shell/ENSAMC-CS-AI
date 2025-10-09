@@ -1,0 +1,49 @@
+Voici un code C# représentant un contrat pour l’acquisition de données :
+public interface IDevice{
+void open();
+void read();
+void close();
+}
+Chaque matériel d’acquisition peut être différent selon son type d’interface. On a par
+exemple des interfaces USB, des interfaces réseaux (TCP ou UDP), des interfaces PCI
+express ou n’importe quel autre type d’interface d’ordinateur.
+
+# 1 - Les composants Client de IDevice n’ont pas besoin de savoir quel type de matériel il
+# sollicite. Ils passent par ex. par une méthode public void acquire(IDevice
+# aDevice)pour accéder aux données. Quel avantage cela procure-t-il ?
+
+- Cela permet de découpler le code client de l'implémentation spécifique du matériel. Le client peut travailler avec n'importe quel type de dispositif qui implémente l'interface IDevice, ce qui facilite la maintenance et l'extensibilité du code.
+  Si un nouveau type de matériel est ajouté, il suffit de créer une nouvelle classe qui implémente IDevice sans modifier le code client.
+
+# 2 - Que penser de cette solution ? Proposer une amélioration (indice : modifier l'interface ou
+# la classe d'implémentation USBDevice) et discuter de ces alternatives.
+
+- Cette solution viole le principe de substitution de Liskov, car le client doit connaître les détails spécifiques de l'implémentation USBDevice pour fonctionner correctement. Cela rend le code moins flexible et plus difficile à maintenir.
+- Une meilleure approche serait d'ajouter une nouvelle interface, par exemple IRefreshable, qui déclare la méthode refresh(). Ensuite, USBDevice implémente cette nouvelle interface en plus de IDevice.
+  Le client peut alors vérifier si l'objet passé implémente IRefreshable et appeler refresh() si c'est le cas, sans avoir à connaître les détails spécifiques de l'implémentation.
+
+- Exemple d'amélioration :
+
+public interface IRefreshable{
+    void refresh();
+}
+
+public class USBDevice : IDevice, IRefreshable{
+    public void open(){ /* implémentation */ }
+    public void read(){ /* implémentation */ }
+    public void close(){ /* implémentation */ }
+    public void refresh(){ /* implémentation spécifique à USB */ }
+}
+
+public class Ressource {
+  //...
+  public void acquire(IDevice aDevice){
+      aDevice.open();
+      if(aDevice is IRefreshable refreshableDevice){
+          refreshableDevice.refresh();
+      }
+      aDevice.read();
+      aDevice.close();
+  }
+}
+
