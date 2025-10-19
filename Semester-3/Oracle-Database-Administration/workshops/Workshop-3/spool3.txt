@@ -1,0 +1,266 @@
+SQL> SELECT * FROM v$log;
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE    MEMBERS ARC           
+---------- ---------- ---------- ---------- ---------- ---------- ---           
+STATUS           FIRST_CHANGE# FIRST_TIM NEXT_CHANGE# NEXT_TIME     CON_ID      
+---------------- ------------- --------- ------------ --------- ----------      
+         1          1         10  209715200        512          1 NO            
+INACTIVE               2459700 27-SEP-25      2550098 28-SEP-25          0      
+                                                                                
+         2          1         11  209715200        512          1 NO            
+INACTIVE               2550098 28-SEP-25      2662092 29-SEP-25          0      
+                                                                                
+         3          1         12  209715200        512          1 NO            
+CURRENT                2662092 29-SEP-25   1.8447E+19                    0      
+                                                                                
+
+SQL> desc v$log
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GROUP#                                             NUMBER
+ THREAD#                                            NUMBER
+ SEQUENCE#                                          NUMBER
+ BYTES                                              NUMBER
+ BLOCKSIZE                                          NUMBER
+ MEMBERS                                            NUMBER
+ ARCHIVED                                           VARCHAR2(3)
+ STATUS                                             VARCHAR2(16)
+ FIRST_CHANGE#                                      NUMBER
+ FIRST_TIME                                         DATE
+ NEXT_CHANGE#                                       NUMBER
+ NEXT_TIME                                          DATE
+ CON_ID                                             NUMBER
+
+SQL> 
+SQL> desc v$logfile;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GROUP#                                             NUMBER
+ STATUS                                             VARCHAR2(7)
+ TYPE                                               VARCHAR2(7)
+ MEMBER                                             VARCHAR2(513)
+ IS_RECOVERY_DEST_FILE                              VARCHAR2(3)
+ CON_ID                                             NUMBER
+
+SQL> 
+SQL> SELECT GROUP#, STATUS FROM v$log;
+
+    GROUP# STATUS                                                               
+---------- ----------------                                                     
+         1 INACTIVE                                                             
+         2 INACTIVE                                                             
+         3 CURRENT                                                              
+
+SQL> 
+SQL> ALTER SYSTEM SWITCH LOGFILE;
+
+System altered.
+
+SQL> select groupe#, status from v$log;
+select groupe#, status from v$log
+       *
+ERROR at line 1:
+ORA-00904: "GROUPE#": invalid identifier 
+
+
+SQL> select group#, status from vÃ$log;
+select group#, status from vÃ$log
+                           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT GROUP#, STATUS FROM v$log;
+
+    GROUP# STATUS                                                               
+---------- ----------------                                                     
+         1 CURRENT                                                              
+         2 INACTIVE                                                             
+         3 ACTIVE                                                               
+
+SQL> SELECT GROUP#, MEMBER, STATUS FROM v$logfile;
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+         3                                                                      
+/opt/oracle/oradata/ORCLCDB/redo03.log                                          
+                                                                                
+                                                                                
+         2                                                                      
+/opt/oracle/oradata/ORCLCDB/redo02.log                                          
+                                                                                
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+                                                                                
+         1                                                                      
+/opt/oracle/oradata/ORCLCDB/redo01.log                                          
+                                                                                
+                                                                                
+
+SQL> ALTER DATABASE ADD LOGFILE GROUP 4 log/log41.log SIZE 50M;
+ALTER DATABASE ADD LOGFILE GROUP 4 log/log41.log SIZE 50M
+                                   *
+ERROR at line 1:
+ORA-02236: invalid file name 
+
+
+SQL> ALTER DATABASE ADD LOGFILE GROUP 4 'log/log41.log' SIZE 50M;
+ALTER DATABASE ADD LOGFILE GROUP 4 'log/log41.log' SIZE 50M
+*
+ERROR at line 1:
+ORA-00301: error in adding log file 'log/log41.log' - file cannot be created 
+ORA-27040: file create error, unable to create file 
+Linux-x86_64 Error: 2: No such file or directory 
+Additional information: 1 
+
+
+SQL> ALTER DATABASE ADD LOGFILE GROUP 4 'opt/oracle/oradata/Workshops/Workshop3/log/log41.log' SIZE 50M;
+ALTER DATABASE ADD LOGFILE GROUP 4 'opt/oracle/oradata/Workshops/Workshop3/log/log41.log' SIZE 50M
+*
+ERROR at line 1:
+ORA-00301: error in adding log file 
+'opt/oracle/oradata/Workshops/Workshop3/log/log41.log' - file cannot be created 
+ORA-27040: file create error, unable to create file 
+Linux-x86_64 Error: 2: No such file or directory 
+Additional information: 1 
+
+
+SQL> ALTER DATABASE ADD LOGFILE GROUP 4 ('/opt/oracle/oradata/Workshops/Workshop3/log/log41.log') SIZE 50M;
+
+Database altered.
+
+SQL> ALTER DATABASE ADD LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log12.log' TO GROUP 1;
+
+Database altered.
+
+SQL> ALTER DATABASE ADD LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log22.log' TO GROUP 2;
+
+Database altered.
+
+SQL> 
+SQL> ALTER DATABASE ADD LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log42.log' TO GROUP 4;
+
+Database altered.
+
+SQL> SELECT GROUP#, MEMBER, STATUS FROM v$logfile;
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+         3                                                                      
+/opt/oracle/oradata/ORCLCDB/redo03.log                                          
+                                                                                
+                                                                                
+         2                                                                      
+/opt/oracle/oradata/ORCLCDB/redo02.log                                          
+                                                                                
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+                                                                                
+         1                                                                      
+/opt/oracle/oradata/ORCLCDB/redo01.log                                          
+                                                                                
+                                                                                
+         4                                                                      
+/opt/oracle/oradata/Workshops/Workshop3/log/log41.log                           
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+                                                                                
+                                                                                
+         1                                                                      
+/opt/oracle/oradata/Workshops/Workshop3/log/log12.log                           
+INVALID                                                                         
+                                                                                
+         2                                                                      
+
+    GROUP#                                                                      
+----------                                                                      
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+/opt/oracle/oradata/Workshops/Workshop3/log/log22.log                           
+INVALID                                                                         
+                                                                                
+         4                                                                      
+/opt/oracle/oradata/Workshops/Workshop3/log/log42.log                           
+INVALID                                                                         
+                                                                                
+
+7 rows selected.
+
+SQL> ALTER DATABASE DROP LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log41.log';
+ALTER DATABASE DROP LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log41.log'
+*
+ERROR at line 1:
+ORA-00362: member is required to form a valid logfile in group 4 
+ORA-01517: log member: '/opt/oracle/oradata/Workshops/Workshop3/log/log41.log' 
+
+
+SQL> ALTER DATABASE DROP LOGFILE MEMBER '/opt/oracle/oradata/Workshops/Workshop3/log/log42.log';
+
+Database altered.
+
+SQL> Select name, log_mode from V$database;
+
+NAME      LOG_MODE                                                              
+--------- ------------                                                          
+ORCLCDB   NOARCHIVELOG                                                          
+
+SQL> shutdown
+ORA-00604: error occurred at recursive SQL level 1
+ORA-01013: user requested cancel of current operation
+
+SQL> shutdown
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> ALTER DATABASE ARCHIVELOG;
+ALTER DATABASE ARCHIVELOG
+*
+ERROR at line 1:
+ORA-01034: ORACLE not available 
+Process ID: 0 
+Session ID: 0 Serial number: 0 
+
+
+SQL> STARTUP MOUNT;
+ORACLE instance started.
+
+Total System Global Area 4848614352 bytes                                       
+Fixed Size                  9145296 bytes                                       
+Variable Size             956301312 bytes                                       
+Database Buffers         3875536896 bytes                                       
+Redo Buffers                7630848 bytes                                       
+Database mounted.
+SQL> ALTER DATABASE ARCHIVELOG;
+
+Database altered.
+
+SQL> ALTER DATABASE OPEN;
+
+Database altered.
+
+SQL> spool off

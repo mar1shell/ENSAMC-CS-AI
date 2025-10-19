@@ -127,10 +127,6 @@ SELECT FILE_NAME, TABLESPACE_NAME FROM DBA_DATA_FILES;
 
 /opt/oracle/oradata/ORCLCDB/undotbs01.dbf UNDOTBS1
 
-
-FILE_NAME  TABLESPACE_NAME
----------- -------------------------------- 
-
 /opt/oracle/oradata/ORCLCDB/users01.dbf USERS
 
 /opt/oracle/oradata/Workshops/data/f1.dbf S1
