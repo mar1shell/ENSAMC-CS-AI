@@ -1,0 +1,4 @@
+type,title,year,publisher,authors,source
+Book,"Modern Database Systems: The Object Model, Interoperability, and Beyond.",1995,ACM Press and Addison-Wesley,"[""Won Kim""]",DBLP
+Article,Introduction to NoSQL Databases,2018,IEEE Computer Society,"[""John Doe"",""Jane Smith""]",DBLP
+Book,Database System Concepts,2020,McGraw-Hill,"[""Abraham Silberschatz"",""Henry Korth"",""S. Sudarshan""]",DBLP

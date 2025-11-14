@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "69122a56b3c1003867ce5f47",
+    "type": "Book",
+    "title": "Modern Database Systems: The Object Model, Interoperability, and Beyond.",
+    "year": 1995,
+    "publisher": "ACM Press and Addison-Wesley",
+    "authors": ["Won Kim"],
+    "source": "DBLP"
+  },
+  {
+    "_id": "69122a56b3c1003867ce5f48",
+    "type": "Article",
+    "title": "Introduction to NoSQL Databases",
+    "year": 2018,
+    "publisher": "IEEE Computer Society",
+    "authors": ["John Doe", "Jane Smith"],
+    "source": "DBLP"
+  },
+  {
+    "_id": "69122a56b3c1003867ce5f49",
+    "type": "Book",
+    "title": "Database System Concepts",
+    "year": 2020,
+    "publisher": "McGraw-Hill",
+    "authors": ["Abraham Silberschatz", "Henry Korth", "S. Sudarshan"],
+    "source": "DBLP"
+  }
+]

@@ -335,8 +335,8 @@ SELECT * FROM dba_users WHERE username='C##RAMI';
 SELECT tablespace_name, tablespace_size - used_space AS free_space_mb FROM dba_tablespace_usage_metrics WHERE tablespace_name='USERS';
 
  TABLESPACE_NAME 	       FREE_SPACE_MB
- ------------------------- -------------
- USERS				       4193958
+ ----------------------- -------------
+ USERS				           4193958
 
 # 26 - Identifiez les segments avec le plus grand espace libre non utilisé dans le tablespace "USERS".
 
