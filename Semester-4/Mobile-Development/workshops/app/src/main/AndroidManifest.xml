@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobiledev">
         <activity
+            android:name=".workshop3_2.W3Ex2Activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".workshop3_1.W3Ex1Activity" />
+        <activity android:name=".workshop3_2.ListActivity" />
+        <activity android:name=".workshop3_2.GridActivity" />
+        <activity android:name=".workshop3_2.SpinnerActivity" />
     </application>
 
 </manifest>
