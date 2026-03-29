@@ -1,7 +1,5 @@
 # Flutter Workshop 2
 
-SQLite CRUD exercises in Flutter based on the first workshop structure.
-
 ## Structure
 
 ```
@@ -33,8 +31,3 @@ cd ex1_students_db  # or ex2_exams_db
 flutter pub get
 flutter run
 ```
-
-## Notes
-
-- The machine used for setup did not have Flutter CLI installed, so projects were initialized from the first workshop template and adapted.
-- Install dependencies with flutter pub get before first run.
