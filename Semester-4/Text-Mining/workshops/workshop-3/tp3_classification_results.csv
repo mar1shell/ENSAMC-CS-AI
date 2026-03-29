@@ -1,0 +1,17 @@
+Feature Selection,Classifier,Accuracy,Precision,Recall,F1-Score
+Mutual Information,XGBoost,0.9508,0.9541,0.9499,0.9519
+Information Gain,XGBoost,0.9508,0.9541,0.9499,0.9519
+Chi-Square,XGBoost,0.95,0.9524,0.9498,0.951
+Fisher's Score,XGBoost,0.9492,0.9521,0.9485,0.9502
+Chi-Square,Decision Tree,0.9487,0.9497,0.9489,0.9493
+Fisher's Score,Decision Tree,0.9469,0.9484,0.9468,0.9476
+Chi-Square,SVM,0.9433,0.946,0.9422,0.944
+Mutual Information,Decision Tree,0.9398,0.9412,0.9402,0.9407
+Information Gain,Decision Tree,0.9398,0.9412,0.9402,0.9407
+Fisher's Score,SVM,0.9382,0.942,0.9372,0.9394
+Mutual Information,SVM,0.932,0.9349,0.9307,0.9326
+Information Gain,SVM,0.932,0.9349,0.9307,0.9326
+Chi-Square,KNN,0.9047,0.9143,0.9005,0.906
+Fisher's Score,KNN,0.8882,0.9008,0.8858,0.8907
+Mutual Information,KNN,0.8476,0.8687,0.8513,0.8525
+Information Gain,KNN,0.8476,0.8687,0.8513,0.8525

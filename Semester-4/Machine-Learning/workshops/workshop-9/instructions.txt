@@ -1,0 +1,15 @@
+Année Universitaire: 2021-2022
+
+TP N° 10 Machine Learning & Text Mining
+SVM
+Activité 1 : SVM Linéaire
+Considérons les programmes suivants :
+
+1
+
+Activité 2 : SVM non Linéaire
+Considérons le programme suivant :
+
+2
+
+
